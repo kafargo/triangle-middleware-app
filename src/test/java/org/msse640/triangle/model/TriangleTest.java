@@ -32,6 +32,7 @@ public class TriangleTest {
     @Test
     public void testInvalidTriangleWithStrings() {
         try {
+            @SuppressWarnings("unused")
             Triangle triangle = new Triangle(Double.parseDouble("zyx"), 4, 5);
             fail("Expected NumberFormatException to be thrown");
         } catch (NumberFormatException e) {
