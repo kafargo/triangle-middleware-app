@@ -55,4 +55,13 @@ public class TriangleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Invalid triangle sides"));
     }
+
+    @Test
+    public void testGetTriangleTypeWithInvalidStringInput() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "abc") // Invalid string input
+                .param("side2", "4")
+                .param("side3", "5"))
+                .andExpect(status().isBadRequest());
+    }
 }
