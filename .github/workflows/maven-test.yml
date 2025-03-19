@@ -36,3 +36,14 @@ jobs:
       # Step 4: Run Maven tests
       - name: Run Maven tests
         run: mvn test
+
+      # Step 5: Print test result summary
+      - name: Print test result summary
+        run: |
+          if [ -f target/surefire-reports/TEST-*.xml ]; then
+            echo "### Test Results Summary" >> $GITHUB_STEP_SUMMARY
+            grep -E "<testsuite" target/surefire-reports/TEST-*.xml | \
+              sed -E 's/.*name="([^"]+)".*tests="([^"]+)".*failures="([^"]+)".*errors="([^"]+)".*/- Test Suite: \1\n  - Tests: \2\n  - Failures: \3\n  - Errors: \4/' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No test results found." >> $GITHUB_STEP_SUMMARY
+          fi
