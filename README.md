@@ -2,7 +2,7 @@
 
 This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabina](https://github.com/Yabina), and [@kafargo](https://github.com/kafargo)
 
-## :scroll: [Assignment Details](./Docs/Assignment.md)
+## :microscope: [Assignment Details](./Docs/Assignment.md) :test_tube:
 
 <details>
 
