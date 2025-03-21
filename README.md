@@ -1,6 +1,6 @@
 # MSSE 640 Assignment 1
 
-This project was built by @JohnMKreski, @Yabina, and @kafargo
+This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabina](https://github.com/Yabina), and [@kafargo](https://github.com/kafargo)
 
 [Click here for assignment details](./Docs/Assignment.md)
 
