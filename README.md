@@ -1,34 +1,16 @@
+# MSSE 640 Assignment 1
+
+This project was built by @JohnMKreski, @Yabina, and @kafargo
+
+[Click here for assignment details](./Docs/Assignment.md)
+
+<details>
+
+<summary>Running The Triangle Middleware Application</summary>
+
 # Triangle Middleware Application
 
 This project is a Spring Boot application that provides a RESTful API to determine the type of triangle based on the lengths of its sides. The application includes a POST endpoint that accepts three values representing the lengths of the sides of a triangle and returns whether the triangle is scalene, isosceles, or equilateral.
-
-## Project Structure
-
-```
-triangle-middleware-app
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── org
-│   │   │       └── msse640
-│   │   │           └── triangle
-│   │   │               ├── TriangleMiddlewareApplication.java
-│   │   │               ├── controller
-│   │   │               │   └── TriangleController.java
-│   │   │               └── model
-│   │   │                   └── Triangle.java
-│   │   └── resources
-│   │       └── application.properties
-│   ├── test
-│   │   ├── java
-│   │   │   └── org
-│   │   │       └── msse640
-│   │   │           └── triangle
-│   │   │               └── model
-│   │   │                   └── TriangleTest.java
-├── pom.xml
-└── README.md
-```
 
 ## Getting Started
 
@@ -62,12 +44,8 @@ Unit tests can be run by running the folliwing command:
 mvn test
 ```
 
-## Triangle Types
-
-- **Equilateral**: All three sides are equal.
-- **Isosceles**: Two sides are equal.
-- **Scalene**: All three sides are different.
-
 ## License
 
 This project is licensed under the MIT License.
+
+</details>
