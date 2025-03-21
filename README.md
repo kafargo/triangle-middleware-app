@@ -2,7 +2,7 @@
 
 This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabina](https://github.com/Yabina), and [@kafargo](https://github.com/kafargo)
 
-[Click here for assignment details](./Docs/Assignment.md)
+## :scroll: [Assignment Details](./Docs/Assignment.md)
 
 <details>
 
