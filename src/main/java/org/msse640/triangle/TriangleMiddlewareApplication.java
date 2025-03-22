@@ -1,13 +1,8 @@
 package org.msse640.triangle;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
 public class TriangleMiddlewareApplication {
@@ -28,13 +23,13 @@ public class TriangleMiddlewareApplication {
 
         if (os.contains("win")) {
             // Windows
-            rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+            rt.exec(new String[] { "rundll32", "url.dll,FileProtocolHandler", url });
         } else if (os.contains("mac")) {
             // macOS
-            rt.exec("open " + url);
+            rt.exec(new String[] { "open", url });
         } else if (os.contains("nix") || os.contains("nux")) {
             // Unix or Linux
-            rt.exec("xdg-open " + url);
+            rt.exec(new String[] { "xdg-open", url });
         } else {
             throw new UnsupportedOperationException("Unsupported operating system: " + os);
         }
