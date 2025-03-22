@@ -56,17 +56,5 @@ public class Triangle {
         } else {
             return "Not a Triangle. Invalid sides based on the Triangle Inequality Theorem.";
         }
-        
-        //Previous getType function
-        //     if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
-        //         return "Invalid triangle sides";
-        //     }
-        //     if (sideA == sideB && sideB == sideC) {
-        //         return "Equilateral";
-        //     } else if (sideA == sideB || sideB == sideC || sideA == sideC) {
-        //         return "Isosceles";
-        //     } else {
-        //         return "Scalene";
-        //     }
     }
 }
