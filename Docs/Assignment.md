@@ -10,22 +10,18 @@ data from a file, through your Unit tests only? Did you write results to a file?
 # Example Test Data
 
 What test data did you input into the program.
-| Testcase ID | Test Case Description        | Input Values (side1, side2, side3) | Expected Outcome |
-|-------------|------------------------------|------------------------------------|------------------|
-| TC1         | Test Equilateral Triangle    | 3, 3, 3                            | "Equilateral"    |
-| TC2         | Test Equilateral Triangle with Decimal Values | 6.2, 6.2, 6.2 | "Equilateral" |
-| TC3         | Test Isosceles Triangle      | 3, 3, 4 | "Isosceles" |
-| TC4         | Test Scalene Triangle        | 3, 4, 5 | "Scalene" |
-| TC5         | Test Triangle with a single Zero value Side| 0, 4, 5 | "Invalid triangle sides" |
-| TC6         | Test Invalid Triangle (All Sides Zero) | 0, 0, 0 | "Invalid triangle sides" |
-| TC7         | Test Invalid Input (Empty Side) | 5, 6, " " | HTTP 400 Bad Request |
-| TC          | Test Scalene Triangle with Decimal Values | 3.5, 4.5, 5.5 | "Scalene" |
-| TC9         | Test Invalid Triangle (Negative Side) | -5, 2, 2 | "Triangle sides cannot be negative value" |
-| TC10        | Test Invalid Input (String Input) | "abc", 4, 5 | HTTP 400 Bad Request |
-| TC11        | Test Invalid Isosceles Triangle (Sum of Two Sides Equal to Third) | 2, 2, 4 | "The sum of two sides shouldn't be equal to the other side" |
-| TC12        | Test Invalid Isosceles Triangle (Sum of Two Sides Less Than Third) | 2, 2, 5 | "The sum of two sides shouldn't be less than the other side" |
-| TC13        | Test Invalid Scalene Triangle (Sum of Two Sides Equal to Third) | 1, 2, 3 | "The sum of two sides shouldn't be equal to the other side" |
-| TC14        | Test Invalid Scalene Triangle (Sum of Two Sides Less Than Third) | 2, 5, 13 | "The sum of two sides shouldn't be less than the other side" |
+| Testcase ID | Test Case Description                         | Input Values (side1, side2, side3) | Expected Outcome |
+|-------------|-----------------------------------------------|------------------------------------|------------------|
+| TC1         | Test Equilateral Triangle                     | 3, 3, 3                            | "Equilateral"    |
+| TC2         | Test Equilateral Triangle with Decimal Values | 6.2, 6.2, 6.2                      | "Equilateral" |
+| TC3         | Test Isosceles Triangle                       | 3, 3, 4                            | "Isosceles" |
+| TC4         | Test Scalene Triangle                         | 3, 4, 5                            | "Scalene" |
+| TC5         | Test Triangle with a single Zero value Side   | 0, 4, 5                            | "Invalid triangle sides" |
+| TC6         | Test Invalid Triangle (All Sides Zero)        | 0, 0, 0                            | "Invalid triangle sides" |
+| TC7         | Test Invalid Input (Empty Side)               | 5, 6, " "                          | HTTP 400 Bad Request |
+| TC          | Test Scalene Triangle with Decimal Values     | 3.5, 4.5, 5.5                      | "Scalene" |
+| TC9         | Test Invalid Triangle (Negative Side)         | -5, 2, 2                           | "Triangle sides cannot be negative value" |
+| TC10        | Test Invalid Input (String Input)             | "abc", 4, 5 | HTTP 400 Bad Request |
 
 
 # Unit Tests
