@@ -27,6 +27,16 @@ public class TriangleControllerTest {
     }
 
     @Test
+    public void testGetTriangleTypeEquilateralDecimal() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "6.2")
+                .param("side2", "6.2")
+                .param("side3", "6.2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Equilateral"));
+    }
+
+    @Test
     public void testGetTriangleTypeIsosceles() throws Exception {
         mockMvc.perform(post("/triangle/type")
                 .param("side1", "3")
@@ -55,6 +65,45 @@ public class TriangleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Invalid triangle sides"));
     }
+    
+    @Test
+    public void testGetTriangleTypeInvalidInput() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "0")
+                .param("side2", "0")
+                .param("side3", "0"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Invalid triangle sides"));
+    }
+
+    @Test
+    public void testGetTriangleTypeInvalidsideInput() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "5")
+                .param("side2", "6")
+                .param("side3", " "))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetTriangleTypeDecimalInput() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+            .param("side1", "3.5")
+            .param("side2", "4.5")
+            .param("side3", "5.5"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Scalene"));
+    } 
+
+    @Test
+    public void testGetTriangleTypeInvalidnegativeInput() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+            .param("side1", "-5")
+            .param("side2", "2")
+            .param("side3", "2"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Triangle sides cannot be negative value"));
+    }
 
     @Test
     public void testGetTriangleTypeWithInvalidStringInput() throws Exception {
@@ -63,5 +112,45 @@ public class TriangleControllerTest {
                 .param("side2", "4")
                 .param("side3", "5"))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetTriangleTypeInvalidIsosceles() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "2")
+                .param("side2", "2")
+                .param("side3", "4"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("The sum of two side shouldn't be equal to the other side"));
+    }
+
+    @Test
+    public void testGetTriangleTypeInvalidIsoscelesSide() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "2")
+                .param("side2", "2")
+                .param("side3", "5"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("The sum of two side shouldn't be less than the other side"));
+    }
+
+    @Test
+    public void testGetTriangleTypeInvalidScalene() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "1")
+                .param("side2", "2")
+                .param("side3", "3"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("The sum of two side shouldn't be equal to the other side"));
+    }
+
+    @Test
+    public void testGetTriangleTypeInvalidScaleneSide() throws Exception {
+        mockMvc.perform(post("/triangle/type")
+                .param("side1", "2")
+                .param("side2", "5")
+                .param("side3", "13"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("The sum of two side shouldn't be less than the other side"));
     }
 }
