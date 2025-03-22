@@ -1,6 +1,31 @@
+# Assignment 1:  Unit Testing
+---
+
+
+#### <ins> Table of Contents </ins>
+- [Introduction](#introduction)
+   - [Overview of the Program](#overview-of-the-program)
+   - [How Errors Were Handled](#how-errors-were-handled)
+   - [Choice of Unit Tests](#choice-of-unit-tests)
+- [Program Details](#program-details)
+   - [Technical Overview of the Triangle Middleware Application](#technical-overview-of-the-triangle-middleware-application)
+   - [How to Interface with the API](#how-to-interface-with-the-api)
+   - [Example Test Data](#example-test-data)
+- [Unit Tests](#unit-tests)
+   - [Bugs Encountered](#bugs-encountered)
+   - [Problems](#problems)
+- [Screen Shots](#screen-shots)
+- [Recommendations](#recommendations)
+- [References](#references)
+   - [*The Art of Software Testing*](#the-art-of-software-testing)
+   - [GitHub](#github)
+
+---
+---
+
 # Introduction
 
-## Overview of the Program
+## Overview of the Program 
 
 The **Triangle Middleware Application** is a Spring Boot-based RESTful API designed to determine the type of a triangle based on the lengths of its sides. The application provides a single endpoint, `/triangle/type`, which accepts three parameters (`side1`, `side2`, and `side3`) representing the lengths of the triangle's sides. Based on the input, the API returns one of the following results:
 
@@ -194,14 +219,28 @@ Describe any bugs you encountered as the result of your testing and what did you
 
 What kinds of problems did you encounter
 
-# Screen Shots
+
+## Screen Shots
 
 Includes screen shots showing successful program runs and Unit test runs. Clearly label each
 
-# Git Hub Link
+<!-- ## Git Hub Link
 
-https://github.com/kafargo/triangle-middleware-app
+https://github.com/kafargo/triangle-middleware-app -->
 
 # Recommendations
 
 What recommendations would you make to improve this assignment.
+
+---
+---
+
+# References
+
+#### *The Art of Software Testing*
+
+Myers, G. J., Sandler, C., & Badgett, T. (2011). *The Art of Software Testing*. John Wiley & Sons. [📖](https://malenezi.github.io/malenezi/SE401/Books/114-the-art-of-software-testing-3-edition.pdf)
+
+#### GitHub
+
+Desta, Y., Fargo, K. A., & John, K. M. (n.d.). *MSSE 640 Assignment 1*. GitHub. https://github.com/kafargo/triangle-middleware-app
