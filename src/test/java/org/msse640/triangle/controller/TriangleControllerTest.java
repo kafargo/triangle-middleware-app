@@ -22,7 +22,7 @@ public class TriangleControllerTest {
                 .param("side2", "3")
                 .param("side3", "3"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Equilateral"));
+                .andExpect(content().string("Type of Triangle: Equilateral Triangle"));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class TriangleControllerTest {
                 .param("side2", "6.2")
                 .param("side3", "6.2"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Equilateral"));
+                .andExpect(content().string("Type of Triangle: Equilateral Triangle"));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TriangleControllerTest {
                 .param("side2", "3")
                 .param("side3", "4"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Isosceles"));
+                .andExpect(content().string("Type of Triangle: Isosceles Triangle"));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class TriangleControllerTest {
                 .param("side2", "4")
                 .param("side3", "5"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Scalene"));
+                .andExpect(content().string("Type of Triangle: Scalene Triangle"));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class TriangleControllerTest {
                 .param("side2", "4")
                 .param("side3", "5"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Invalid triangle sides"));
+                .andExpect(content().string("Invalid user input triangle sides. Please enter valid sides. x < 0"));
     }
-    
+
     @Test
     public void testGetTriangleTypeInvalidInput() throws Exception {
         mockMvc.perform(post("/triangle/type")
@@ -72,7 +72,7 @@ public class TriangleControllerTest {
                 .param("side2", "0")
                 .param("side3", "0"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Invalid triangle sides"));
+                .andExpect(content().string("Invalid user input triangle sides. Please enter valid sides. x < 0"));
     }
 
     @Test
@@ -87,21 +87,21 @@ public class TriangleControllerTest {
     @Test
     public void testGetTriangleTypeDecimalInput() throws Exception {
         mockMvc.perform(post("/triangle/type")
-            .param("side1", "3.5")
-            .param("side2", "4.5")
-            .param("side3", "5.5"))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Scalene"));
-    } 
+                .param("side1", "3.5")
+                .param("side2", "4.5")
+                .param("side3", "5.5"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Type of Triangle: Scalene Triangle"));
+    }
 
     @Test
     public void testGetTriangleTypeInvalidnegativeInput() throws Exception {
         mockMvc.perform(post("/triangle/type")
-            .param("side1", "-5")
-            .param("side2", "2")
-            .param("side3", "2"))
-            .andExpect(status().isOk())
-            .andExpect(content().string("Triangle sides cannot be negative value"));
+                .param("side1", "-5")
+                .param("side2", "2")
+                .param("side3", "2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Invalid user input triangle sides. Please enter valid sides. x < 0"));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class TriangleControllerTest {
                 .param("side2", "2")
                 .param("side3", "4"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("The sum of two side shouldn't be equal to the other side"));
+                .andExpect(content().string("Not a Triangle. Invalid sides based on the Triangle Inequality Theorem."));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class TriangleControllerTest {
                 .param("side2", "2")
                 .param("side3", "5"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("The sum of two side shouldn't be less than the other side"));
+                .andExpect(content().string("Not a Triangle. Invalid sides based on the Triangle Inequality Theorem."));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class TriangleControllerTest {
                 .param("side2", "2")
                 .param("side3", "3"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("The sum of two side shouldn't be equal to the other side"));
+                .andExpect(content().string("Not a Triangle. Invalid sides based on the Triangle Inequality Theorem."));
     }
 
     @Test
@@ -150,6 +150,6 @@ public class TriangleControllerTest {
                 .param("side2", "5")
                 .param("side3", "13"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("The sum of two side shouldn't be less than the other side"));
+                .andExpect(content().string("Not a Triangle. Invalid sides based on the Triangle Inequality Theorem."));
     }
 }
