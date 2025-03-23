@@ -205,7 +205,6 @@ By using Swagger, you can efficiently test and interact with the **Triangle Midd
 
 # Example Test Data
 
-What test data did you input into the program.
 | Testcase ID | Test Case Description                         | Input Values (side1, side2, side3) | Expected Outcome                          |
 |-------------|-----------------------------------------------|------------------------------------|-------------------------------------------|
 | TC1         | Test Equilateral Triangle                     | 3, 3, 3                            | "Equilateral"                             |
@@ -221,7 +220,6 @@ What test data did you input into the program.
 
 # Unit Tests
 
-Describe the Unit Tests you created. Why did you choose those.
 The unit tests in `TriangleControllerTest.java` validate the `TriangleController` class, which determines the type of triangle based on side lengths. The tests cover various scenarios to ensure correct handling of inputs and expected outcomes. Here's a summary:
 
 ### **Test Cases**
