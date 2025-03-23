@@ -22,7 +22,7 @@ public class TriangleControllerTest {
                 .param("side2", "3")
                 .param("side3", "3"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Type of Triangle: Equilateral Triangle FAIL"));
+                .andExpect(content().string("Type of Triangle: Equilateral Triangle"));
     }
 
     @Test
