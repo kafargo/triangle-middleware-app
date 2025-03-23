@@ -39,4 +39,4 @@ jobs:
 
       - name: Display test results
         if: always()
-        run: cat target/surefire-reports/*.txt
+        run: cat target/surefire-reports/*.txt >> $GITHUB_STEP_SUMMARY
