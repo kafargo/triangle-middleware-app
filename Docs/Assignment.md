@@ -2,7 +2,7 @@
 
 ---
 
-#### <ins> Table of Contents </ins>
+#### Table of Contents
 
 - [Introduction](#introduction)
   - [Overview of the Program](#overview-of-the-program)
