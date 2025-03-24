@@ -8,18 +8,21 @@
   - [Overview of the Program](#overview-of-the-program)
   - [How Errors Were Handled](#how-errors-were-handled)
   - [Choice of Unit Tests](#choice-of-unit-tests)
+  - [Summary](#summary)
 - [Program Details](#program-details)
-  - [Technical Overview of the Triangle Middleware Application](#technical-overview-of-the-triangle-middleware-application)
-  - [How to Interface with the API](#how-to-interface-with-the-api)
-  - [Example Test Data](#example-test-data)
+   - [IDE Choice](#ide-choice)
+   - [Technical Overview of the Triangle Middleware Application](#technical-overview-of-the-triangle-middleware-application)
+   - [How to Interface with the API](#how-to-interface-with-the-api)
 - [Unit Tests](#unit-tests)
-  - [Bugs Encountered](#bugs-encountered)
-  - [Problems](#problems)
+   - [Test Cases](#test-cases)
+   - [Example Test Data](#example-test-data)
+   - [Bugs Encountered](#bugs-encountered)
+   - [Problems](#problems)
 - [Screen Shots](#screen-shots)
 - [Recommendations](#recommendations)
 - [References](#references)
-  - [_The Art of Software Testing_](#the-art-of-software-testing)
-  - [GitHub](#github)
+   - [_The Art of Software Testing_](#the-art-of-software-testing)
+   - [GitHub](#github)
 
 ---
 
@@ -29,7 +32,7 @@
 
 ## Overview of the Program
 
-The **Triangle Middleware Application** is a Spring Boot-based RESTful API designed to determine the type of a triangle based on the lengths of its sides. The application provides a single endpoint, `/triangle/type`, which accepts three parameters (`side1`, `side2`, and `side3`) representing the lengths of the triangle's sides. Based on the input, the API returns one of the following results:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **Triangle Middleware Application** is a Spring Boot-based RESTful API designed to determine the type of a triangle based on the lengths of its sides. The application provides a single endpoint, `/triangle/type`, which accepts three parameters (`side1`, `side2`, and `side3`) representing the lengths of the triangle's sides. Based on the input, the API returns one of the following results:
 
 - **Equilateral**: All three sides are equal.
 - **Isosceles**: Two sides are equal.
@@ -60,7 +63,7 @@ Error handling was implemented at multiple levels to ensure robustness and user-
 
 ## Choice of Unit Tests
 
-Unit tests (using JUnit) were designed to cover all possible scenarios for determining the type of a triangle. The tests ensure the correctness of the application and validate its behavior under edge cases. Below is an overview of the unit tests:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Unit tests (using JUnit) were designed to cover all possible scenarios for determining the type of a triangle. The tests ensure the correctness of the application and validate its behavior under edge cases. Below is an overview of the unit tests:
 
 ### 1. Controller Tests
 
@@ -88,13 +91,18 @@ Unit tests (using JUnit) were designed to cover all possible scenarios for deter
 
 ## Summary
 
-The **Triangle Middleware Application** is a robust and well-tested API that handles errors gracefully and provides clear feedback to users. The choice of unit tests ensures comprehensive coverage of all possible scenarios, including valid inputs, invalid inputs, and edge cases. This approach guarantees the reliability and correctness of the application in real-world usage.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **Triangle Middleware Application** is a robust and well-tested API that handles errors gracefully and provides clear feedback to users. The choice of unit tests ensures comprehensive coverage of all possible scenarios, including valid inputs, invalid inputs, and edge cases. This approach guarantees the reliability and correctness of the application in real-world usage.
+
+
+##### [Back to TOC](#table-of-contents)
+
+---
 
 # Program Details
 
-## VS Code as a IDE Choice
+## IDE Choice
 
-Visual Studio Code (VS Code) is an excellent IDE for running and managing the **Triangle Middleware Application** due to its lightweight nature, extensive plugin ecosystem, and robust debugging capabilities. Here are some key benefits:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We chose to use **Visual Studio Code** (VS Code) for our program implementation. VS Code proved to be an excellent IDE for running and managing the **Triangle Middleware Application** due to its lightweight nature, extensive plugin ecosystem, and robust debugging capabilities. Here are some key benefits:
 
 1. **Integrated Development Environment**:
 
@@ -119,11 +127,11 @@ Visual Studio Code (VS Code) is an excellent IDE for running and managing the **
 6. **Debugging**:
    - VS Code's debugging tools allow you to set breakpoints, inspect variables, and step through the code, making it easier to identify and resolve issues.
 
----
+
 
 ## Technical Overview of the Triangle Middleware Application
 
-The **Triangle Middleware Application** is a Spring Boot-based RESTful API designed to determine the type of a triangle based on the lengths of its sides. Below is a technical breakdown of the application:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The **Triangle Middleware Application** is a Spring Boot-based RESTful API designed to determine the type of a triangle based on the lengths of its sides. Below is a technical breakdown of the application:
 
 1. **Core Functionality**:
 
@@ -151,13 +159,13 @@ The **Triangle Middleware Application** is a Spring Boot-based RESTful API desig
 5. **Configuration**:
    - The application is configured to run on port `8080` (defined in `application.properties`).
 
----
+
 
 ## How to Interface with the API
 
 ### Hosted Endpoint
 
-If the application is hosted on a server, you can interact with the API by sending HTTP POST requests to the `/triangle/type` endpoint. Below is an example using `curl`:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If the application is hosted on a server, you can interact with the API by sending HTTP POST requests to the `/triangle/type` endpoint. Below is an example using `curl`:
 
 ```bash
 curl -X POST "http://<host>:8080/triangle/type" \
@@ -205,26 +213,15 @@ Swagger provides an interactive web interface to explore and test the API. To ac
 
 By using Swagger, you can efficiently test and interact with the **Triangle Middleware Application** without writing additional client code.
 
-# Example Test Data
+##### [Back to TOC](#table-of-contents)
 
-| Testcase ID | Test Case Description                         | Input Values (side1, side2, side3) | Expected Outcome                          |
-| ----------- | --------------------------------------------- | ---------------------------------- | ----------------------------------------- |
-| TC1         | Test Equilateral Triangle                     | 3, 3, 3                            | "Equilateral"                             |
-| TC2         | Test Equilateral Triangle with Decimal Values | 6.2, 6.2, 6.2                      | "Equilateral"                             |
-| TC3         | Test Isosceles Triangle                       | 3, 3, 4                            | "Isosceles"                               |
-| TC4         | Test Scalene Triangle                         | 3, 4, 5                            | "Scalene"                                 |
-| TC5         | Test Triangle with a single Zero value Side   | 0, 4, 5                            | "Invalid triangle sides"                  |
-| TC6         | Test Invalid Triangle (All Sides Zero)        | 0, 0, 0                            | "Invalid triangle sides"                  |
-| TC7         | Test Invalid Input (Empty Side)               | 5, 6, " "                          | HTTP 400 Bad Request                      |
-| TC          | Test Scalene Triangle with Decimal Values     | 3.5, 4.5, 5.5                      | "Scalene"                                 |
-| TC9         | Test Invalid Triangle (Negative Side)         | -5, 2, 2                           | "Triangle sides cannot be negative value" |
-| TC10        | Test Invalid Input (String Input)             | "abc", 4, 5                        | HTTP 400 Bad Request                      |
+---
 
 # Unit Tests
 
-The unit tests in `TriangleControllerTest.java` validate the `TriangleController` class, which determines the type of triangle based on side lengths. The tests cover various scenarios to ensure correct handling of inputs and expected outcomes. Here's a summary:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The unit tests in `TriangleControllerTest.java` validate the `TriangleController` class, which determines the type of triangle based on side lengths. The tests cover various scenarios to ensure correct handling of inputs and expected outcomes.
 
-### **Test Cases**
+## **Test Cases**
 
 1. **Equilateral Triangle**:
 
@@ -320,20 +317,38 @@ The unit tests in `TriangleControllerTest.java` validate the `TriangleController
 
 These tests ensure the `TriangleController` is reliable, accurate, and robust in determining triangle types and handling invalid inputs.
 
-# Bugs Encountered
+## Example Test Data
 
-Our codes looked like they were working fine until we started to test our program to see if they satisfy the inequality theorem. Our code is not sophisticated enough to pass the inequality theorem logic.
+| Testcase ID | Test Case Description                         | Input Values (side1, side2, side3) | Expected Outcome                          |
+| ----------- | --------------------------------------------- | ---------------------------------- | ----------------------------------------- |
+| TC1         | Test Equilateral Triangle                     | 3, 3, 3                            | "Equilateral"                             |
+| TC2         | Test Equilateral Triangle with Decimal Values | 6.2, 6.2, 6.2                      | "Equilateral"                             |
+| TC3         | Test Isosceles Triangle                       | 3, 3, 4                            | "Isosceles"                               |
+| TC4         | Test Scalene Triangle                         | 3, 4, 5                            | "Scalene"                                 |
+| TC5         | Test Triangle with a single Zero value Side   | 0, 4, 5                            | "Invalid triangle sides"                  |
+| TC6         | Test Invalid Triangle (All Sides Zero)        | 0, 0, 0                            | "Invalid triangle sides"                  |
+| TC7         | Test Invalid Input (Empty Side)               | 5, 6, " "                          | HTTP 400 Bad Request                      |
+| TC          | Test Scalene Triangle with Decimal Values     | 3.5, 4.5, 5.5                      | "Scalene"                                 |
+| TC9         | Test Invalid Triangle (Negative Side)         | -5, 2, 2                           | "Triangle sides cannot be negative value" |
+| TC10        | Test Invalid Input (String Input)             | "abc", 4, 5                        | HTTP 400 Bad Request                      |
 
-Another bug we found was that our input didn't accept decimals or the system wouldn't work with decimal. So we changed our Input values from Integer to Double.
+## Bugs Encountered
 
-# Problems
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Our program seemed to pass until we started to test our program along our test cases. One bug we ecountered early was to see if the sides satisfied the triangle inequality theorem. After a quick google search, we were able to incorporate a boundary statement within a boolean function to satisfy the theorm against user input. 
 
-What kinds of problems did you encounter
-One of the main problems faced was trying to comeup with as many test cases as possible to ensure we have a working quality program. Eventhough our test cases are not comprehensive but it still has good coverage.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Another bug we found was that our initial user input didn't accept decimals since it was only accounting for ints. We changed the program logic to account for inputs as type floats, but soon relalized after black-box testing that it was still crashing. So finally, we changed our Input value types from float to double which seems to have satified the numeric imput user type requirement.
 
-Another problem faced was coming up with a robhust logic in our code to fulfill all the specifications that makes the Traingles Scalene, Equilateral or Isosceles.The problem was encountered when we tried to capture the logic of inequality theorem for all three triangles.
+## Problems
 
-## Screen Shots
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; One of the main problems we faced was trying to come up with as many test cases as possible to ensure we have a working quality program. Referencing Chapter 1 in [The Art of Software Testing](#references) helped gain insight to the types of test cases we needed to implement. Even though our test cases are not as comprehensive as the Chapter's example, we believe we have good test coverage across the program.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Another problem faced was coming up with a robust logic in our code to fulfill all the specifications that makes the Traingles Scalene, Equilateral or Isosceles. We found to be using boundary statements as our primary conditonal logic. If we were to continue this program, a thought would be to reprogram the functions to eliminate as many boundary statements as we could to make the program less vunerable. 
+
+##### [Back to TOC](#table-of-contents)
+
+---
+
+# Screen Shots
 
 Running the Action:
 
@@ -345,9 +360,17 @@ Testing locally:
 
 ![test results](./img/Passing.Unit.Tests.png)
 
+##### [Back to TOC](#table-of-contents)
+
+---
+
 # Recommendations
 
 I would recomend keeping the entire assingment in GitHub like this and not in a seperate word document.
+
+
+
+##### [Back to TOC](#table-of-contents)
 
 ---
 
