@@ -64,3 +64,5 @@ CORS is an HTTP-header based mechanism that allows a server to indicate any orig
 2. [Benefits of OpenAPI in API Development](https://swagger.io/blog/api-strategy/benefits-of-openapi-api-development/) - Swagger Blog
 3. [APIs Aren’t Just for Tech Companies](https://hbr.org/2021/04/apis-arent-just-for-tech-companies) - Harvard Business Review
 4. [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) - MDN Web Docs
+
+![Postman Demo](./img/Postman.Demo.gif)
