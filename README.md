@@ -1,8 +1,12 @@
-# MSSE 640 Assignment 1
+# MSSE 640 Project
 
 This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabina](https://github.com/Yabina), and [@kafargo](https://github.com/kafargo)
 
-## :microscope: [Assignment Details](./Docs/Assignment.md) :test_tube:
+## :microscope: Assignments :test_tube:
+
+### [Assignment 1](./Docs/Assignment_1.md)
+
+### [Assignment 2](./Docs/Assignment_2.md)
 
 <details>
 
