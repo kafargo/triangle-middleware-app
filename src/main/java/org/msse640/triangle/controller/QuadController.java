@@ -111,4 +111,24 @@ public class QuadController {
         quadService.updateSides(side1, side2, side3, side4);
         return ResponseEntity.ok(String.format("Defaults updated to: [%s, %s, %s, %s]", side1, side2, side3, side4));
     }     
+
+
+    /**
+     * DELETE endpoint to reset the default side values to 0.
+     * 
+     * This will also mark the service as uninitialized, so the user must call POST /quadrilateral/type again
+     * to set new sides before using the GET endpoint.
+     *
+     * Returns:
+     * - 200 OK with a confirmation message if the sides were reset
+     *
+     * Example:
+     * DELETE /quadrilateral/test/default
+     */
+    
+    @DeleteMapping("/test/default")
+    public ResponseEntity<String> deleteDefaults() {
+        quadService.reset();
+        return ResponseEntity.ok("Stored side values have been cleared. Please POST new values.");
+    }
 }

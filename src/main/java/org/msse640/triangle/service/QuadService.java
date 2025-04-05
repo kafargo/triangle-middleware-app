@@ -38,5 +38,15 @@ public class QuadService {
         this.side4 = s4;
         this.initialized = true; //IMPORTANT to initialize user input or not
     }
+
+    // Used by DELETE endpoint to reset the stored side values to 0
+    // and mark the service as uninitialized
+    public void reset() {
+        this.side1 = 0;
+        this.side2 = 0;
+        this.side3 = 0;
+        this.side4 = 0;
+        this.initialized = false;
+    }
 }
 

@@ -134,6 +134,28 @@ Defaults updated to: [6.0, 4.0, 6.0, 4.0]
 
 ---
 
+## 4. DELETE /quadrilateral/test/default
+
+**Query Parameters:**
+- None
+
+**Purpose:**  
+Clear the stored side values and reset the state of the API.
+
+**Method:** `DELETE`
+
+**Request URL:**  
+http://localhost:8080/quadrilateral/test/default
+
+**On success:**
+Returns 200 OK with message:
+```
+Stored side values have been cleared. Please POST new values.
+```
+**Note:** DELETE is always successful. It resets the state regardless of whether values had been set. This makes it safe to call anytime.
+
+**Note:** After using DELETE, both GET and PUT will return 400 errors until new values are set via POST.
+
 ## Postman Setup Tips
 
 - For `POST` and `PUT`, either:
@@ -143,6 +165,7 @@ Defaults updated to: [6.0, 4.0, 6.0, 4.0]
 - Set the request method (`POST`, `PUT`, or `GET`) using the dropdown next to the URL bar in Postman.
 
 ---
+
 
 ## Optional Enhancements
 
