@@ -66,3 +66,27 @@ CORS is an HTTP-header based mechanism that allows a server to indicate any orig
 4. [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) - MDN Web Docs
 
 ![Postman Demo](./img/Postman.Demo.gif)
+![image](https://github.com/user-attachments/assets/9a5fc9b5-ac9d-49db-98df-11f0b5e16f9b)
+![image](https://github.com/user-attachments/assets/5bfe0af0-bbec-49ba-b5ac-fa4b5691ccf8)
+![image](https://github.com/user-attachments/assets/b8bc1248-3a5e-4d06-a901-f827b456a5c1)
+![image](https://github.com/user-attachments/assets/d0d8f901-4f5b-47a6-a1d1-657a0640252a)
+![image](https://github.com/user-attachments/assets/9bc82ff0-523f-4889-89b4-7242e731f437)
+![image](https://github.com/user-attachments/assets/368cb7a3-9c32-4cb5-b7c9-fd0c8b87a3cc)
+![image](https://github.com/user-attachments/assets/de0e0420-52f0-40e7-9549-a5803df7754e)
+![image](https://github.com/user-attachments/assets/1b3dff62-b4f7-4e96-8253-32e26709d98b)
+![image](https://github.com/user-attachments/assets/16f442c9-0153-42eb-a54b-2d26c0423a93)
+![image](https://github.com/user-attachments/assets/1ffec6ec-1f26-49f8-9778-9edf1a5444b9)
+![image](https://github.com/user-attachments/assets/49629ac6-36ec-43da-9dde-4503e9a6f3d4)
+![image](https://github.com/user-attachments/assets/a7b0d293-ab57-43ed-9274-dec601365222)
+![image](https://github.com/user-attachments/assets/53c7fc34-86e6-4d98-9b57-cc701e4f45d5)
+![image](https://github.com/user-attachments/assets/299be00d-7030-4e71-bd17-f4579f10c552)
+![image](https://github.com/user-attachments/assets/230f28af-13f0-46ad-8d08-0b4da9612ae2)
+![image](https://github.com/user-attachments/assets/013e62a7-21a6-4d6b-bfdf-9b027b704d2f)
+![image](https://github.com/user-attachments/assets/5f066731-552e-4d50-afe8-a43c2a176593)
+![image](https://github.com/user-attachments/assets/c3fb868c-de71-47a6-80d2-7a337e26970d)
+
+
+
+
+
+
