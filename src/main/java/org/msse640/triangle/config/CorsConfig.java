@@ -13,12 +13,11 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Allow all endpoints
-                        .allowedOrigins("https://triangle-middleware-app-production.up.railway.app") // Allow Swagger UI
-                                                                                                     // origin
+                registry.addMapping("/**")
+                        .allowedOriginPatterns("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow specific HTTP methods
-                        .allowedHeaders("*") // Allow all headers
-                        .allowCredentials(true); // Allow cookies if needed
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
