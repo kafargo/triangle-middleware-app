@@ -17,7 +17,7 @@ import org.msse640.triangle.dto.QuadResponse;
  */
 
 @RestController
-@RequestMapping("/quadrilateral")
+@RequestMapping("/quad")
 public class QuadController {
 
     // Inject the QuadService to manage in-memory side values
@@ -62,7 +62,7 @@ public class QuadController {
      * GET /quadrilateral/test/default
      */
     
-    @GetMapping("/test/default")
+    @GetMapping("/type")
     public ResponseEntity<?> testDefault() {
         if (!quadService.isInitialized()) {
             return ResponseEntity.badRequest().body("No sides have been set. Please use POST /quadrilateral/type first.");
@@ -97,7 +97,7 @@ public class QuadController {
      * PUT /quadrilateral/test/default?side1=6&side2=4&side3=6&side4=4
      */
 
-    @PutMapping("/test/default")
+    @PutMapping("/type")
     public ResponseEntity<?> updateDefaults(
             @RequestParam double side1,
             @RequestParam double side2,
@@ -126,7 +126,7 @@ public class QuadController {
      * DELETE /quadrilateral/test/default
      */
     
-    @DeleteMapping("/test/default")
+    @DeleteMapping("/type")
     public ResponseEntity<String> deleteDefaults() {
         quadService.reset();
         return ResponseEntity.ok("Stored side values have been cleared. Please POST new values.");
