@@ -8,6 +8,8 @@ This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabi
 
 ### [Assignment 2](./Docs/Assignment_2.md)
 
+### [Assignment 3](./Docs/Assignment_3.md)
+
 <details>
 
 <summary>Running The Triangle Middleware Application</summary>
