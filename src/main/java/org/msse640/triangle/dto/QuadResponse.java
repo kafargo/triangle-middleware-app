@@ -10,28 +10,48 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Shows the customization in Swagger with the import
  */
 
- public class QuadResponse {
+public class QuadResponse {
 
     @Schema(description = "Length of side 1", example = "1.0 (Default)")
-    public double side1;
+    private final double sideA;
 
     @Schema(description = "Length of side 2", example = "1.0 (Default)")
-    public double side2;
+    private final double sideB;
 
     @Schema(description = "Length of side 3", example = "1.0 (Default)")
-    public double side3;
+    private final double sideC;
 
     @Schema(description = "Length of side 4", example = "1.0 (Default)")
-    public double side4;
+    private final double sideD;
 
     @Schema(description = "Resulting quadrilateral type", example = "Type of Quadrilateral: Square")
-    public String type;
+    private final String type;
 
-    public QuadResponse(double side1, double side2, double side3, double side4, String type) {
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
-        this.side4 = side4;
+    public QuadResponse(double sideA, double sideB, double sideC, double sideD, String type) {
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+        this.sideD = sideD;
         this.type = type;
+    }
+
+    public double getSideA() {
+        return sideA;
+    }
+
+    public double getSideB() {
+        return sideB;
+    }
+
+    public double getSideC() {
+        return sideC;
+    }
+
+    public double getSideD() {
+        return sideD;
+    }
+
+    public String getType() {
+        return type;
     }
 }

@@ -1,10 +1,20 @@
 package org.msse640.triangle.model;
 
+/**
+ * Quadrilateral represents a four‑sided shape defined by its side lengths.
+ *
+ * It provides:
+ *  - input validation (all sides > 0 and must form a valid quadrilateral)
+ *  - type determination (square, rectangle, rhombus placeholder, unknown)
+ *
+ * A quadrilateral is valid if and only if the sum of any three sides
+ * is strictly greater than the remaining side.
+ */
 public class Quadrilateral {
-    private double sideA;
-    private double sideB;
-    private double sideC;
-    private double sideD;
+    private final double sideA;
+    private final double sideB;
+    private final double sideC;
+    private final double sideD;
 
     public Quadrilateral(double sideA, double sideB, double sideC, double sideD) {
         this.sideA = sideA;
@@ -14,74 +24,69 @@ public class Quadrilateral {
     }
 
     /**
-     * Input validation: All sides must be greater than 0
-     * 
-     * Example (invalid): sideA = 0, sideB = 4, sideC = 4, sideD = 4
+     * Validates that:
+     * 1. a, b, c, d are all > 0.
+     * 2. The sum of any three sides is greater than the fourth.
+     *
+     * @return null if valid, otherwise a descriptive error message using a/b/c/d notation
      */
-    public static boolean inputCheck(double a, double b, double c, double d) {
-        return a > 0 && b > 0 && c > 0 && d > 0;
+    public static String validate(double sideA, double sideB, double sideC, double sideD) {
+        if (sideA <= 0 || sideB <= 0 || sideC <= 0 || sideD <= 0) {
+            return "all sides (a, b, c, d) must be > 0";
+        }
+        if ((sideA + sideB + sideC) <= sideD) return "sum of a + b + c must be > d";
+        if ((sideA + sideB + sideD) <= sideC) return "sum of a + b + d must be > c";
+        if ((sideA + sideC + sideD) <= sideB) return "sum of a + c + d must be > b";
+        if ((sideB + sideC + sideD) <= sideA) return "sum of b + c + d must be > a";
+        return null;
     }
 
     /**
-     * Square Check: All four sides must be equal
-     * 
-     * Example (square): sideA = 5, sideB = 5, sideC = 5, sideD = 5
+     * All four sides equal.
      */
-    public static boolean isSquare(double a, double b, double c, double d) {
-        return a == b && b == c && c == d;
+    public static boolean allSidesEqual(double sideA, double sideB, double sideC, double sideD) {
+        return sideA == sideB && sideB == sideC && sideC == sideD;
     }
 
     /**
-     * Rectangle Check: Opposite sides must be equal (A == C and B == D),
-     * and adjacent sides must be different (A != B) to exclude square
-     * 
-     * Example (rectangle): sideA = 6, sideB = 4, sideC = 6, sideD = 4
+     * Opposite sides equal (a == c and b == d) and adjacent not equal.
      */
-    public static boolean isRectangle(double a, double b, double c, double d) {
-        return a == c && b == d && a != b;
+    public static boolean isRectangle(double sideA, double sideB, double sideC, double sideD) {
+        return (sideA == sideC && sideB == sideD) && (sideA != sideB);
     }
 
     /**
-     * Rhombus Check: All sides equal, but assume it's not a square if user distinguishes by angle
-     * In real geometry, rhombus ≠ square when interior angles ≠ 90°
-     * 
-     * Example (rhombus by assumption): sideA = 7, sideB = 7, sideC = 7, sideD = 7
-     * (In our logic, this will still classify as a square unless we add angle checks)
+     * All sides equal: potential rhombus (angles not considered).
      */
-    public static boolean isRhombus(double a, double b, double c, double d) {
-        return isSquare(a, b, c, d); // Placeholder; distinguish only if you include angles
+    public static boolean isRhombus(double sideA, double sideB, double sideC, double sideD) {
+        return allSidesEqual(sideA, sideB, sideC, sideD);
     }
 
     /**
-     * Determine the type of quadrilateral
+     * Determine type based on side lengths.
      * Priority:
-     *  - Invalid input
-     *  - Square
-     *  - Rectangle
-     *  - Rhombus
-     *  - Unknown shape
-     * 
-     * Example Inputs:
-     *  - Square:     (5, 5, 5, 5)
-     *  - Rectangle:  (6, 4, 6, 4)
-     *  - Invalid:    (0, 4, 4, 4)
-     *  - Unknown:    (5, 6, 7, 8)
+     * 1. Invalid input (with reason)
+     * 2. Square
+     * 3. Rectangle
+     * 4. Rhombus
+     * 5. Unknown
+     *
+     * @return descriptive type or error
      */
     public String getType() {
-        if (!inputCheck(sideA, sideB, sideC, sideD)) {
-            return "Invalid input: all sides must be greater than 0.";
+        String err = validate(sideA, sideB, sideC, sideD);
+        if (err != null) {
+            return "Invalid quadrilateral: " + err + ".";
         }
-
-        if (isSquare(sideA, sideB, sideC, sideD)) {
+        if (allSidesEqual(sideA, sideB, sideC, sideD)) {
             return "Type of Quadrilateral: Square";
-        } else if (isRectangle(sideA, sideB, sideC, sideD)) {
-            return "Type of Quadrilateral: Rectangle";
-        } else if (sideA == sideB && sideB == sideC && sideC == sideD) {
-            return "Type of Quadrilateral: Rhombus (assuming not a square due to angle)";
-        } else {
-            return "Not a standard square/rectangle/rhombus based on side lengths.";
         }
+        if (isRectangle(sideA, sideB, sideC, sideD)) {
+            return "Type of Quadrilateral: Rectangle";
+        }
+        if (isRhombus(sideA, sideB, sideC, sideD)) {
+            return "Type of Quadrilateral: Rhombus (assuming not a square due to angle)";
+        }
+        return "Not a standard square/rectangle/rhombus based on side lengths.";
     }
 }
-
-
