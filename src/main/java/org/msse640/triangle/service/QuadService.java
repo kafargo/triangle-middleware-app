@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuadService {
-    private double side1;
-    private double side2;
-    private double side3;
-    private double side4;
+    private double sideA;
+    private double sideB;
+    private double sideC;
+    private double sideD;
 
     // Track whether the user has posted sides yet
     private boolean initialized = false;
@@ -24,28 +24,23 @@ public class QuadService {
     }
 
     // Getters used by GET endpoint to fetch the current default side values
-    public double getSide1() { return side1; }
-    public double getSide2() { return side2; }
-    public double getSide3() { return side3; }
-    public double getSide4() { return side4; }
+    public double getSideA() { return sideA; }
+    public double getSideB() { return sideB; }
+    public double getSideC() { return sideC; }
+    public double getSideD() { return sideD; }
 
 
     // Used by PUT and POST endpoints to update the stored side values
-    public void updateSides(double s1, double s2, double s3, double s4) {
-        this.side1 = s1;
-        this.side2 = s2;
-        this.side3 = s3;
-        this.side4 = s4;
+    public void updateSides(double sideA, double sideB, double sideC, double sideD) {
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+        this.sideD = sideD;
         this.initialized = true; //IMPORTANT to initialize user input or not
     }
 
-    // Used by DELETE endpoint to reset the stored side values to 0
-    // and mark the service as uninitialized
+    // method to uninitialize
     public void reset() {
-        this.side1 = 0;
-        this.side2 = 0;
-        this.side3 = 0;
-        this.side4 = 0;
         this.initialized = false;
     }
 }

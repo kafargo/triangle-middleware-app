@@ -3,8 +3,13 @@ package org.msse640.triangle.controller;
 import org.msse640.triangle.model.Quadrilateral;
 import org.msse640.triangle.service.QuadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.Map;
+
 import org.msse640.triangle.dto.QuadResponse;
 
 /**
@@ -24,27 +29,43 @@ public class QuadController {
     @Autowired
     private QuadService quadService;
 
+    public QuadController(QuadService quadService) {
+        this.quadService = quadService;
+    }
+
     /**
      * POST endpoint that takes side lengths directly from the user
      * via query parameters and returns the quadrilateral type.
      * 
-     * Example: POST /quadrilateral/type?side1=5&side2=5&side3=5&side4=5
+     * Example: POST /quadrilateral/type?sideA=5&sideB=5&sideC=5&sideD=5
      */
+
     @PostMapping("/type")
-    public QuadResponse getQuadType(
-            @RequestParam double side1,
-            @RequestParam double side2,
-            @RequestParam double side3,
-            @RequestParam double side4) 
-        {
-
-        // Store the values so GET will reflect them
-        quadService.updateSides(side1, side2, side3, side4);
-
-        // Still return the result based on the provided sides
-        Quadrilateral q = new Quadrilateral(side1, side2, side3, side4);
-        return new QuadResponse(side1, side2, side3, side4, q.getType());
+    public ResponseEntity<?> postQuadrilateral(
+            @RequestParam double sideA,
+            @RequestParam double sideB,
+            @RequestParam double sideC,
+            @RequestParam double sideD
+    ) {
+        // 1. Delegate all validation + typing to the model
+        Quadrilateral quad = new Quadrilateral(sideA, sideB, sideC, sideD);
+        String type = quad.getType();
+    
+        // 2. If the model says “Invalid input…”, reset and return JSON error
+        if (type.startsWith("Invalid input")) {
+            // rule #1: invalid POST should uninitialize
+            quadService.reset();
+            return ResponseEntity
+                .badRequest()
+                .body(Map.of("error", type));
+        }
+    
+        // 3. Otherwise persist and return the structured response
+        quadService.updateSides(sideA, sideB, sideC, sideD);
+        QuadResponse response = new QuadResponse(sideA, sideB, sideC, sideD, type);
+        return ResponseEntity.ok(response);
     }
+                
 
 
     /**
@@ -63,18 +84,22 @@ public class QuadController {
      */
     
     @GetMapping("/type")
-    public ResponseEntity<?> testDefault() {
+    public ResponseEntity<?> getQuadrilateral() {
         if (!quadService.isInitialized()) {
-            return ResponseEntity.badRequest().body("No sides have been set. Please use POST /quadrilateral/type first.");
+        // rule #2: no GET until POST
+            return ResponseEntity
+                .badRequest()
+                .body(Collections.singletonMap("error", "Please POST sides first."));
         }
 
-        double s1 = quadService.getSide1();
-        double s2 = quadService.getSide2();
-        double s3 = quadService.getSide3();
-        double s4 = quadService.getSide4();
+        double a = quadService.getSideA();
+        double b = quadService.getSideB();
+        double c = quadService.getSideC();
+        double d = quadService.getSideD();
+        String type = new Quadrilateral(a, b, c, d).getType();
 
-        Quadrilateral q = new Quadrilateral(s1, s2, s3, s4);
-        return ResponseEntity.ok(new QuadResponse(s1, s2, s3, s4, q.getType()));
+        QuadResponse response = new QuadResponse(a, b, c, d, type);
+        return ResponseEntity.ok(response);
     }
     
 
@@ -94,22 +119,27 @@ public class QuadController {
      * - 400 Bad Request if no sides have been set yet (user hasn't POSTed)
      *
      * Example:
-     * PUT /quadrilateral/test/default?side1=6&side2=4&side3=6&side4=4
+     * PUT /quadrilateral/test/default?sideA=6&sideB=4&sideC=6&sideD=4
      */
 
     @PutMapping("/type")
-    public ResponseEntity<?> updateDefaults(
-            @RequestParam double side1,
-            @RequestParam double side2,
-            @RequestParam double side3,
-            @RequestParam double side4
+    public ResponseEntity<?> putQuadrilateral(
+            @RequestParam double sideA,
+            @RequestParam double sideB,
+            @RequestParam double sideC,
+            @RequestParam double sideD
     ) {
         if (!quadService.isInitialized()) {
-            return ResponseEntity.badRequest().body("Cannot update sides. Please use POST /quadrilateral/type first.");
+            //rule #3a: PUT → same guard as GET
+            return ResponseEntity
+            .badRequest()
+            .body(Collections.singletonMap("error", "Please POST sides first."));
         }
     
-        quadService.updateSides(side1, side2, side3, side4);
-        return ResponseEntity.ok(String.format("Defaults updated to: [%s, %s, %s, %s]", side1, side2, side3, side4));
+        quadService.updateSides(sideA, sideB, sideC, sideD);
+        String type = new Quadrilateral(sideA, sideB, sideC, sideD).getType();
+        QuadResponse response = new QuadResponse(sideA, sideB, sideC, sideD, type);
+        return ResponseEntity.ok(response);
     }     
 
 
@@ -127,8 +157,15 @@ public class QuadController {
      */
     
     @DeleteMapping("/type")
-    public ResponseEntity<String> deleteDefaults() {
+    public ResponseEntity<?> deleteQuadrilateral() {
+        // rule #3b: DELETE → reset and return confirmation
+        //same guard as GET and PUT
+        if (!quadService.isInitialized()) {
+            return ResponseEntity
+                .badRequest()
+                .body(Collections.singletonMap("error", "Please POST sides first."));
+        }
         quadService.reset();
-        return ResponseEntity.ok("Stored side values have been cleared. Please POST new values.");
+        return ResponseEntity.ok("Quadrilateral data has been reset.");
     }
 }
