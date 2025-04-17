@@ -23,6 +23,20 @@ public class Quadrilateral {
         this.sideD = sideD;
     }
 
+    public static boolean hasNullOrInvalid(Object a, Object b, Object c, Object d) {
+        try {
+            if (a == null || b == null || c == null || d == null) return true;
+            Double.parseDouble(a.toString());
+            Double.parseDouble(b.toString());
+            Double.parseDouble(c.toString());
+            Double.parseDouble(d.toString());
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+    
+
     /**
      * Validates that:
      * 1. a, b, c, d are all > 0.
@@ -76,7 +90,7 @@ public class Quadrilateral {
     public String getType() {
         String err = validate(sideA, sideB, sideC, sideD);
         if (err != null) {
-            return "Invalid quadrilateral: " + err + ".";
+            return "Invalid Quadrilateral: " + err + ".";
         }
         if (allSidesEqual(sideA, sideB, sideC, sideD)) {
             return "Type of Quadrilateral: Square";

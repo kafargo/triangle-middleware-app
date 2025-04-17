@@ -47,12 +47,20 @@ public class QuadController {
             @RequestParam double sideC,
             @RequestParam double sideD
     ) {
+        // check for null or invalid inputs
+        //all inputs must be numeric and non-null
+        if (Quadrilateral.hasNullOrInvalid(sideA, sideB, sideC, sideD)) {
+            return ResponseEntity
+                .badRequest()
+                .body(Map.of("error", "All inputs must be numeric and non-null."));
+        }
+
         // 1. Delegate all validation + typing to the model
         Quadrilateral quad = new Quadrilateral(sideA, sideB, sideC, sideD);
         String type = quad.getType();
     
         // 2. If the model says “Invalid input…”, reset and return JSON error
-        if (type.startsWith("Invalid input")) {
+        if (type.startsWith("Invalid Quadrilateral")) {
             // rule #1: invalid POST should uninitialize
             quadService.reset();
             return ResponseEntity
@@ -129,6 +137,13 @@ public class QuadController {
             @RequestParam double sideC,
             @RequestParam double sideD
     ) {
+        // check for null or invalid inputs
+        //all inputs must be numeric and non-null
+        if (Quadrilateral.hasNullOrInvalid(sideA, sideB, sideC, sideD)) {
+            return ResponseEntity
+                .badRequest()
+                .body(Map.of("error", "All inputs must be numeric and non-null."));
+        }
         if (!quadService.isInitialized()) {
             //rule #3a: PUT → same guard as GET
             return ResponseEntity
@@ -166,6 +181,6 @@ public class QuadController {
                 .body(Collections.singletonMap("error", "Please POST sides first."));
         }
         quadService.reset();
-        return ResponseEntity.ok("Quadrilateral data has been reset.");
+        return ResponseEntity.ok(Collections.singletonMap("type", "Quadrilateral data has been reset."));
     }
 }
