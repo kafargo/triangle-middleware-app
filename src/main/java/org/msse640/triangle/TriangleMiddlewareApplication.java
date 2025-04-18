@@ -1,6 +1,8 @@
 package org.msse640.triangle;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,10 +11,15 @@ public class TriangleMiddlewareApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(TriangleMiddlewareApplication.class, args);
-        try {
-            openHomePage();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        // Check the environment variable
+        String disableBrowser = System.getenv("DISABLE_BROWSER");
+        if (!"true".equalsIgnoreCase(disableBrowser)) {
+            try {
+                openHomePage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -22,17 +29,13 @@ public class TriangleMiddlewareApplication {
         String os = System.getProperty("os.name").toLowerCase();
 
         if (os.contains("win")) {
-            // Windows
             rt.exec(new String[] { "rundll32", "url.dll,FileProtocolHandler", url });
         } else if (os.contains("mac")) {
-            // macOS
             rt.exec(new String[] { "open", url });
         } else if (os.contains("nix") || os.contains("nux")) {
-            // Unix or Linux
             rt.exec(new String[] { "xdg-open", url });
         } else {
             throw new UnsupportedOperationException("Unsupported operating system: " + os);
         }
     }
-
 }

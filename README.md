@@ -50,6 +50,28 @@ Unit tests can be run by running the folliwing command:
 mvn test
 ```
 
+## Running the app in a Docker Container
+
+1. Start Docker Desktop
+
+2. Build the Jar:
+
+```
+mvn clean package
+```
+
+3. Build the Docker Image:
+
+```
+docker build -t triangle-middleware-app .
+```
+
+4. Run the image in docker. Select optional settings and be sure to specify the port
+
+![image](./docs/img/Docker_image_settings.png)
+
+![image](./docs/img/docker_image.png)
+
 ## License
 
 This project is licensed under the MIT License.
