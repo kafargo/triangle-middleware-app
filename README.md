@@ -72,6 +72,8 @@ docker build -t triangle-middleware-app .
 
 ![image](./docs/img/docker_image.png)
 
+5. Navigate to http://localhost:8080/
+
 ## License
 
 This project is licensed under the MIT License.

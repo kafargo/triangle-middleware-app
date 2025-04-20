@@ -12,14 +12,10 @@ public class TriangleMiddlewareApplication {
     public static void main(String[] args) throws IOException {
         SpringApplication.run(TriangleMiddlewareApplication.class, args);
 
-        // Check the environment variable
-        String disableBrowser = System.getenv("DISABLE_BROWSER");
-        if (!"true".equalsIgnoreCase(disableBrowser)) {
-            try {
-                openHomePage();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            openHomePage();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
