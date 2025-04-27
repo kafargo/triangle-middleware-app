@@ -84,7 +84,7 @@ test("has title", async ({ page }) => {
    //await page.pause();
 });
 ```
-![Load Testing](./img/TitleTest.png)
+![Title](./img/TitleTest.png)
 ##
 ## Test Case (TC002): Verify Triangle Identification as Equilateral
 
@@ -116,7 +116,7 @@ test("get equilateral", async ({ page }) => {
   //await page.pause();
 });
 ```
-![Load Testing](./img/Test1.png)
+![Equilateral Triangle](./img/Test1.png)
 ##
 ## Test Case (TC003): Verify Triangle Identification as Scalene
 
@@ -148,7 +148,7 @@ test("get scalene", async ({ page }) => {
   // await page.pause();
 });
 ```
-![Load Testing](./img/Test3.png)
+![Scalene Triangle](./img/Test3.png)
 ##
 ## Test Case (TC004): Verify Triangle Identification as Isosceles
 
@@ -180,7 +180,7 @@ test("get isosolies", async ({ page }) => {
  // await page.pause();
 });
 ```
-![Load Testing](./img/Test4.png)
+![Isosceles Triangle](./img/Test4.png)
 ##
 ## Test Case (TC005): Verify "View on GitHub" Link in the Footer
 
@@ -213,8 +213,8 @@ test("has link", async ({ page }) => {
  await page.pause();
 });
 ```
-![Load Testing](./img/Test5.png)
-![Load Testing](./img/test5github.png)
+![View on Github](./img/Test5.png)
+![View on Github](./img/test5github.png)
 ##
 ## Test Case (TC006): Verify Footer Displays Copyright Text
 
@@ -243,5 +243,5 @@ test("has footer", async ({ page }) => {
  //await page.pause();
 });
 ```
-![Load Testing](./img/test6.png)
+![Copyright](./img/test6.png)
 ##
