@@ -76,6 +76,27 @@ public class Quadrilateral {
         return allSidesEqual(sideA, sideB, sideC, sideD);
     }
 
+    // Reusable "is this a valid quadrilateral?" check
+    public static boolean isValidQuadrilateral(double sideA, double sideB, double sideC, double sideD) {
+        return validate(sideA, sideB, sideC, sideD) == null;
+    }
+
+    /**
+     * A parallelogram has opposite sides equal (a == c, b == d)
+     */
+    public static boolean isParallelogram(double sideA, double sideB, double sideC, double sideD) {
+        return (sideA == sideC) && (sideB == sideD);
+    }
+
+    /**
+     * A kite has two distinct pairs of adjacent sides equal
+     */
+    public static boolean isKite(double sideA, double sideB, double sideC, double sideD) {
+        return (sideA == sideB && sideC == sideD && sideA != sideC) ||
+            (sideB == sideC && sideD == sideA && sideB != sideD);
+    }
+
+
     /**
      * Determine type based on side lengths.
      * Priority:
@@ -101,6 +122,13 @@ public class Quadrilateral {
         if (isRhombus(sideA, sideB, sideC, sideD)) {
             return "Type of Quadrilateral: Rhombus (assuming not a square due to angle)";
         }
-        return "Not a standard square/rectangle/rhombus based on side lengths.";
+        if (isParallelogram(sideA, sideB, sideC, sideD)) {
+            return "Type of Quadrilateral: Parallelogram";
+        }
+        if (isKite(sideA, sideB, sideC, sideD)) {
+            return "Type of Quadrilateral: Kite";
+        }
+        return "Valid Quadrilateral (Generic convex quadrilateral)";
     }
+    
 }

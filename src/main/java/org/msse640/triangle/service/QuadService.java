@@ -43,5 +43,6 @@ public class QuadService {
     public void reset() {
         this.initialized = false;
     }
+
 }
 
