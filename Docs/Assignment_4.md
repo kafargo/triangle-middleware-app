@@ -245,3 +245,5 @@ test("has footer", async ({ page }) => {
 ```
 ![Copyright](./img/test6.png)
 ##
+# Playwright Demo
+![Playwright Demo](./img/Playwright(1).mp4)
