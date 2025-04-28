@@ -10,6 +10,7 @@ This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabi
 
 ### [Assignment 3](./Docs/Assignment_3.md)
 
+### [Assignment 4](./Docs/Assignment_4.md)
 <details>
 
 <summary>Running The Triangle Middleware Application</summary>
