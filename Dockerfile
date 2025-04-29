@@ -1,17 +1,29 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:25-jdk-slim
+# Stage 1: Build the application using Maven
+FROM maven:3-openjdk-17 AS build
 
-# Set the working directory in the container
+# Set the working directory for the build
 WORKDIR /app
 
-# Copy the Maven build output (JAR file) into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+# Copy the source code into the container
+COPY . .
 
-# Expose the port the application runs on
+# Build the application
+RUN mvn clean package -DskipTests
+
+# Stage 2: Use Amazon Corretto to run the application
+FROM amazoncorretto:17-alpine
+
+# Set the working directory for the runtime
+WORKDIR /app
+
+# Copy the built JAR file from the build stage
+COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar app.jar
+
+# Install xdg-utils for opening URLs
+RUN apk update && apk add xdg-utils
+
+# Expose the application port
 EXPOSE 8080
-
-# Set the environment variable
-ENV DISABLE_BROWSER=true
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
