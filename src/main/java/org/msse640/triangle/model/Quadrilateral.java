@@ -96,7 +96,6 @@ public class Quadrilateral {
             (sideB == sideC && sideD == sideA && sideB != sideD);
     }
 
-
     /**
      * Determine type based on side lengths.
      * Priority:
