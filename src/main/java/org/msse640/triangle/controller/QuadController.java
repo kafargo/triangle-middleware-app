@@ -55,6 +55,14 @@ public class QuadController {
                 .body(Map.of("error", "All inputs must be numeric and non-null."));
         }
 
+        //Validate before continuing
+        if (!Quadrilateral.isValidQuadrilateral(sideA, sideB, sideC, sideD)) {
+            quadService.reset();
+            return ResponseEntity
+                .badRequest()
+                .body(Map.of("error", "Invalid Quadrilateral: violates quadrilateral side length rules."));
+        }
+
         // 1. Delegate all validation + typing to the model
         Quadrilateral quad = new Quadrilateral(sideA, sideB, sideC, sideD);
         String type = quad.getType();
@@ -149,6 +157,14 @@ public class QuadController {
             return ResponseEntity
             .badRequest()
             .body(Collections.singletonMap("error", "Please POST sides first."));
+        }
+
+        // Validate sides before updating
+        if (!Quadrilateral.isValidQuadrilateral(sideA, sideB, sideC, sideD)) {
+            quadService.reset();
+            return ResponseEntity
+                .badRequest()
+                .body(Map.of("error", "Invalid Quadrilateral: violates quadrilateral side length rules."));
         }
     
         quadService.updateSides(sideA, sideB, sideC, sideD);

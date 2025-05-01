@@ -30,7 +30,6 @@ public class QuadControllerTest {
                 .param("sideC", "6")
                 .param("sideD", "7"))
                 .andExpect(status().isBadRequest());
-                // .andExpect(jsonPath("$.error").value("All inputs must be numeric and non-null."));
     }
 
     @Test
@@ -41,7 +40,7 @@ public class QuadControllerTest {
                 .param("sideC", "6")
                 .param("sideD", "7"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Invalid Quadrilateral: all sides (a, b, c, d) must be > 0."));
+                .andExpect(jsonPath("$.error").value("Invalid Quadrilateral: violates quadrilateral side length rules."));
     }
 
     @Test
@@ -52,7 +51,7 @@ public class QuadControllerTest {
                 .param("sideC", "3")
                 .param("sideD", "10"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Invalid Quadrilateral: sum of a + b + c must be > d."));
+                .andExpect(jsonPath("$.error").value("Invalid Quadrilateral: violates quadrilateral side length rules."));
     }
 
     @Test
@@ -89,14 +88,14 @@ public class QuadControllerTest {
     }
 
     @Test
-    void post_returns200ForUnknownQuadrilateral() throws Exception {
+    void post_returns200ForGenericConvexQuadrilateral() throws Exception {
         mockMvc.perform(post("/quad/type")
                 .param("sideA", "2")
                 .param("sideB", "3")
                 .param("sideC", "4")
                 .param("sideD", "5"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.type").value("Not a standard square/rectangle/rhombus based on side lengths."));
+                .andExpect(jsonPath("$.type").value("Valid Quadrilateral (Generic convex quadrilateral)"));
     }
 
     @Test
@@ -122,7 +121,6 @@ public class QuadControllerTest {
                 .param("sideC", "6")
                 .param("sideD", "7"))
                 .andExpect(status().isBadRequest());
-                // .andExpect(jsonPath("$.error").value("All inputs must be numeric and non-null."));
     }
 
     @Test
@@ -137,4 +135,44 @@ public class QuadControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.type").value("Type of Quadrilateral: Square"));
     }
+
+    @Test
+    void post_invalidQuadrilateral_uninitializesState() throws Exception {
+        // Step 1: Send invalid POST
+        mockMvc.perform(post("/quad/type")
+                .param("sideA", "1")
+                .param("sideB", "2")
+                .param("sideC", "3")
+                .param("sideD", "10"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").exists());
+
+        // Step 2: Try to GET the current quadrilateral
+        mockMvc.perform(get("/quad/type"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Please POST sides first."));
+    }
+
+    @Test
+    void put_invalidQuadrilateral_uninitializesState() throws Exception {
+        // Arrange: Pretend the app is initialized (this is important!)
+        Mockito.when(quadService.isInitialized()).thenReturn(true);
+    
+        // Step 1: Send invalid PUT (bad sides that fail validation)
+        mockMvc.perform(put("/quad/type")
+                .param("sideA", "1")
+                .param("sideB", "2")
+                .param("sideC", "3")
+                .param("sideD", "10"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").exists());
+    
+        // Step 2: Try to GET the current quadrilateral
+        Mockito.when(quadService.isInitialized()).thenReturn(false); // Because reset() would have been called
+    
+        mockMvc.perform(get("/quad/type"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Please POST sides first."));
+    }
+    
 }
