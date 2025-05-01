@@ -10,6 +10,7 @@ This project was built by [@JohnMKreski](https://github.com/JohnMKreski), [@Yabi
 
 ### [Assignment 3](./Docs/Assignment_3.md)
 
+### [Assignment 4](./Docs/Assignment_4.md)
 <details>
 
 <summary>Running The Triangle Middleware Application</summary>
@@ -54,23 +55,19 @@ mvn test
 
 1. Start Docker Desktop
 
-2. Build the Jar:
-
-```
-mvn clean package
-```
-
-3. Build the Docker Image:
+2. Build the Docker Image:
 
 ```
 docker build -t triangle-middleware-app .
 ```
 
-4. Run the image in docker. Select optional settings and be sure to specify the port
+3. Run the image in docker. Select optional settings and be sure to specify the port:
 
 ![image](./docs/img/Docker_image_settings.png)
 
 ![image](./docs/img/docker_image.png)
+
+5. Navigate to http://localhost:8080/
 
 ## License
 
